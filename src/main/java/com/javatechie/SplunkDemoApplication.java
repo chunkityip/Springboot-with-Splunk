@@ -1,6 +1,8 @@
 package com.javatechie;
 
+import com.javatechie.dto.JobStatus;
 import com.javatechie.dto.Order;
+import com.javatechie.service.JobService;
 import com.javatechie.service.OrderService;
 import com.javatechie.util.Mapper;
 import org.apache.logging.log4j.LogManager;
@@ -21,6 +23,9 @@ public class SplunkDemoApplication {
 
     @Autowired
     private OrderService service;
+
+    @Autowired
+    private JobService jobService;
 
     @PostMapping
     public Order placeOrder(@RequestBody Order order) {
@@ -43,6 +48,14 @@ public class SplunkDemoApplication {
         Order order = service.getOrder(id);
         logger.info("OrderController:getOrder fetch order response {}", Mapper.mapToJsonString(order));
         return order;
+    }
+
+    @PostMapping("/job")
+    public JobStatus processOrder(@RequestBody Order order) {
+        logger.info("OrderController:processOrder  order request {}", Mapper.mapToJsonString(order));
+        JobStatus jobStatus = jobService.process(order);
+        logger.info("current job status {}", jobStatus);
+        return jobStatus;
     }
 
     public static void main(String[] args) {

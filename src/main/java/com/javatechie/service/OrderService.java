@@ -36,7 +36,7 @@ public class OrderService {
     }
 
     /**
-     * getOrders() method is used to get all orders in system.
+     * getOrders() method is used to get all orders in system..
      *
      * @return List<Order> list of orders
      */

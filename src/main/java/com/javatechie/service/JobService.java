@@ -1,4 +1,5 @@
 package com.javatechie.service;
+import java.security.SecureRandom;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,6 +31,6 @@ public class JobService {
     }
 
     private boolean otherApiResults() {
-        return new Random().nextBoolean();
+        return new SecureRandom().nextBoolean();
     }
 }
